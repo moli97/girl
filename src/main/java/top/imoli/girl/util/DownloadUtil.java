@@ -20,6 +20,7 @@ public class DownloadUtil {
     }
 
     public static void download(String url, String path, AtomicInteger count, boolean incrFileName, Function<String, String> fileNameFunc) {
+        File file = null;
         try {
             String fileName;
             int i = 0;
@@ -36,7 +37,7 @@ public class DownloadUtil {
             } else {
                 fileName = path + File.separator + url.substring(url.lastIndexOf("/") + 1);
             }
-            File file = new File(fileName);
+            file = new File(fileName);
             if (file.exists()) {
                 return;
             }
@@ -62,6 +63,10 @@ public class DownloadUtil {
             inputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
+            if (file != null) {
+                file.delete();
+            }
+            System.out.println("下载失败:" + url);
             throw new RuntimeException(e);
         }
     }
