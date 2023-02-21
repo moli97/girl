@@ -24,8 +24,7 @@ public class ProxyPoolUtil {
                 JSONObject proxy = getProxy();
                 String proxyStr = proxy.getString("proxy");
                 String[] split = proxyStr.split(":");
-                boolean https = proxy.getBooleanValue("https");
-                return connection.proxy((https ? "https" : "http") + "://" + split[0], Integer.parseInt(split[1])).get();
+                return connection.proxy(split[0], Integer.parseInt(split[1])).get();
             } catch (Exception e) {
                 e.printStackTrace();
                 count++;
