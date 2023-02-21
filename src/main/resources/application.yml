@@ -15,8 +15,8 @@ spring:
         jdbc-zero:
           driver-class-name: com.mysql.cj.jdbc.Driver
           url: jdbc:mysql://110.40.195.147:3306/db_girl?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
-          username: girl
-          password: spPW3NPtRHjZcKF2
+          username: db_girl
+          password: 3iTsFJFp3rDFZFDR
       hikari:
         max-lifetime: 300000
 
