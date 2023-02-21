@@ -1,8 +1,7 @@
 package top.imoli.girl.service;
 
-import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.apache.commons.io.FileUtils;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -17,12 +16,11 @@ import top.imoli.girl.entity.Girl;
 import top.imoli.girl.entity.GirlAttribute;
 import top.imoli.girl.mapper.AlbumMapper;
 import top.imoli.girl.mapper.GirlMapper;
+import top.imoli.girl.util.ProxyPoolUtil;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Executor;
 
 /**
  * @author moli
@@ -42,6 +40,8 @@ public class IGirlServiceImpl extends ServiceImpl<GirlMapper, Girl> implements I
     private String userAgent;
     @Value("${girl.existStillSave:false}")
     private boolean existStillSave;
+    @Value("${girl.proxy:false}")
+    private boolean proxy;
     @Autowired
     private AlbumMapper albumMapper;
     private Map<String, String> cookies;
@@ -73,7 +73,19 @@ public class IGirlServiceImpl extends ServiceImpl<GirlMapper, Girl> implements I
     }
 
     private Document getDocument(String url) throws IOException {
-        return Jsoup.connect(url).userAgent(userAgent).cookies(cookies).get();
+        Document doc = getDoc(url);
+        if (doc.text().contains("温馨提示")) {
+            System.out.println("温馨提示: " + url);
+        }
+        return doc;
+    }
+
+    private Document getDoc(String url) throws IOException {
+        Connection connection = Jsoup.connect(url).userAgent(userAgent).cookies(this.cookies);
+        if (proxy) {
+            return ProxyPoolUtil.getProxyDocument(connection);
+        }
+        return connection.get();
     }
 
     private void parseAndSave(Element element) {

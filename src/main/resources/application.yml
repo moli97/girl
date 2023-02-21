@@ -28,3 +28,4 @@ girl:
   userAgent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36
   cookie: gcha_sf=1651388170; __51vcke__JNmlfXHHIrHMZgLq=187ff5cc-d4f2-5355-8232-185cf63987fd; __51vuft__JNmlfXHHIrHMZgLq=1651388172769; __51uvsct__JNmlfXHHIrHMZgLq=3; jpx=83; __vtins__JNmlfXHHIrHMZgLq=%7B%22sid%22%3A%20%22c6fdb46f-7aff-55f4-80d1-a08cef59b7a6%22%2C%20%22vd%22%3A%2022%2C%20%22stt%22%3A%201585163%2C%20%22dr%22%3A%2059981%2C%20%22expires%22%3A%201651402913504%2C%20%22ct%22%3A%201651401113504%7D
   #existStillSave: false
+  #proxy: true
