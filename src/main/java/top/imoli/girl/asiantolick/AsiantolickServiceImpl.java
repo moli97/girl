@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import top.imoli.girl.asiantolick.entity.Asiantolick;
 import top.imoli.girl.mapper.AsiantolickMapper;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,8 +26,19 @@ public class AsiantolickServiceImpl extends ServiceImpl<AsiantolickMapper, Asian
     @EventListener(ApplicationReadyEvent.class)
     public void init() throws Exception {
         System.setProperty("https.protocols", "TLSv1,TLSv1.1,TLSv1.2,SSLv3");
-        for (int i = 0; i < 20; i++) {
-            parseWithIndex(i);
+//        for (int i = 0; i < 20; i++) {
+//            parseWithIndex(i);
+//        }
+        for (Asiantolick asiantolick : list()) {
+            if (asiantolick.getResourcesUrl() == null || asiantolick.getResourcesUrl().isEmpty()) {
+                String downHref = asiantolick.getDownHref();
+                String downloadUrl = getDownloadUrl(downHref);
+                String resources = getResources(downloadUrl);
+                asiantolick.setDownUrl(downloadUrl);
+                asiantolick.setResourcesUrl(resources);
+                save(asiantolick);
+                Thread.sleep(1000);
+            }
         }
     }
 
@@ -51,7 +63,7 @@ public class AsiantolickServiceImpl extends ServiceImpl<AsiantolickMapper, Asian
         System.out.println("alt = " + alt);
         System.out.println("numberPhotos = " + numberPhotos);
         Asiantolick.Builder builder = Asiantolick.Builder.newBuilder()
-                .postId(Integer.parseInt(postId))
+                .id(Integer.parseInt(postId))
                 .href(href)
                 .alt(alt)
                 .size(Integer.parseInt(numberPhotos));
@@ -68,12 +80,15 @@ public class AsiantolickServiceImpl extends ServiceImpl<AsiantolickMapper, Asian
             String albumSize = getProperty(collect, "Album size:");
 
             String download = document.select("#metadata_qrcode > div > span > a").attr("abs:href");
+            String downloadUrl = getDownloadUrl(download);
             builder.downHref(download)
                     .creationDate(creationDate)
                     .photosSize(photosSize)
                     .albumSize(albumSize)
                     .description(description)
-                    .galleryPictures(galleryPictures);
+                    .galleryPictures(galleryPictures)
+                    .downUrl(downloadUrl)
+                    .resourcesUrl(getResources(downloadUrl));
             Asiantolick asiantolick = builder.build();
             saveOrUpdate(asiantolick);
         } catch (Exception e) {
@@ -88,5 +103,19 @@ public class AsiantolickServiceImpl extends ServiceImpl<AsiantolickMapper, Asian
             }
         }
         return "";
+    }
+
+    public static String getDownloadUrl(String url) throws IOException {
+        Document document = Jsoup.connect(url).proxy("127.0.0.1", 7890).get();
+        Element element = document.selectFirst("#download_post");
+        String postId = element.attr("post_id");
+        String postName = element.attr("post_name");
+        String dir = element.attr("dir");
+        return String.format("https://asiantolick.com/ajax/download_post.php?ver=3&dir=/%s&post_id=%s&post_name=%s", dir, postId, postName);
+    }
+
+    public static String getResources(String url) throws IOException {
+        Document document = Jsoup.connect(url).proxy("127.0.0.1", 7890).get();
+        return document.text();
     }
 }

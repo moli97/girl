@@ -19,6 +19,8 @@ public class Asiantolick {
     private String photosSize;
     private String albumSize;
     private int status;
+    private String downUrl;
+    private String resourcesUrl;
 
 
     public Asiantolick() {
@@ -112,18 +114,37 @@ public class Asiantolick {
         this.galleryPictures = galleryPictures;
     }
 
+    public String getDownUrl() {
+        return downUrl;
+    }
+
+    public void setDownUrl(String downUrl) {
+        this.downUrl = downUrl;
+    }
+
+    public String getResourcesUrl() {
+        return resourcesUrl;
+    }
+
+    public void setResourcesUrl(String resourcesUrl) {
+        this.resourcesUrl = resourcesUrl;
+    }
+
+
     public static final class Builder {
-        private int postId;
+        private int id;
         private String href;
         private String alt;
         private int size;
         private String downHref;
+        private String description;
+        private String galleryPictures;
         private String creationDate;
         private String photosSize;
         private String albumSize;
         private int status;
-        private String description;
-        private String galleryPictures;
+        private String downUrl;
+        private String resourcesUrl;
 
         private Builder() {
         }
@@ -132,8 +153,8 @@ public class Asiantolick {
             return new Builder();
         }
 
-        public Builder postId(int postId) {
-            this.postId = postId;
+        public Builder id(int id) {
+            this.id = id;
             return this;
         }
 
@@ -157,6 +178,16 @@ public class Asiantolick {
             return this;
         }
 
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder galleryPictures(String galleryPictures) {
+            this.galleryPictures = galleryPictures;
+            return this;
+        }
+
         public Builder creationDate(String creationDate) {
             this.creationDate = creationDate;
             return this;
@@ -177,27 +208,31 @@ public class Asiantolick {
             return this;
         }
 
-        public Builder description(String description) {
-            this.description = description;
+        public Builder downUrl(String downUrl) {
+            this.downUrl = downUrl;
             return this;
         }
 
-        public Builder galleryPictures(String galleryPictures) {
-            this.galleryPictures = galleryPictures;
+        public Builder resourcesUrl(String resourcesUrl) {
+            this.resourcesUrl = resourcesUrl;
             return this;
         }
 
         public Asiantolick build() {
             Asiantolick asiantolick = new Asiantolick();
-            asiantolick.setId(postId);
+            asiantolick.setId(id);
             asiantolick.setHref(href);
             asiantolick.setAlt(alt);
             asiantolick.setSize(size);
             asiantolick.setDownHref(downHref);
+            asiantolick.setDescription(description);
+            asiantolick.setGalleryPictures(galleryPictures);
             asiantolick.setCreationDate(creationDate);
             asiantolick.setPhotosSize(photosSize);
             asiantolick.setAlbumSize(albumSize);
             asiantolick.setStatus(status);
+            asiantolick.setDownUrl(downUrl);
+            asiantolick.setResourcesUrl(resourcesUrl);
             return asiantolick;
         }
     }
