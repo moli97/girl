@@ -24,6 +24,7 @@ public class AsiantolickServiceImpl extends ServiceImpl<AsiantolickMapper, Asian
 
     @EventListener(ApplicationReadyEvent.class)
     public void init() throws Exception {
+        System.setProperty("https.protocols", "TLSv1,TLSv1.1,TLSv1.2,SSLv3");
         for (int i = 0; i < 20; i++) {
             parseWithIndex(i);
         }
