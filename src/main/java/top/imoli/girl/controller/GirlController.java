@@ -53,14 +53,14 @@ public class GirlController {
     }
 
     @GetMapping("/parseAlbum")
-    public String parseAlbum(@RequestParam(name = "start", defaultValue = "10000") int start, @RequestParam(name = "end", defaultValue = "9999999") int end, @RequestParam(name = "sync", defaultValue = "false") boolean sync, @RequestParam(name = "limit", defaultValue = "9999999") int limit) {
+    public String parseAlbum(@RequestParam(name = "start", defaultValue = "10000") int start, @RequestParam(name = "end", defaultValue = "9999999") int end, @RequestParam(name = "sync", defaultValue = "true") boolean sync, @RequestParam(name = "limit", defaultValue = "9999999") int limit) {
         QueryWrapper<Girl> wrapper = new QueryWrapper<>();
         wrapper.ge("id", start).le("id", end).eq("status", 0).last(" limit " + limit);
         List<Girl> list = girlService.list(wrapper);
         for (Girl girl : list) {
             if (sync) {
                 if (!girlService.parseAlbum(girl.getId())) {
-                    return "解析失败 girlId:" + girl.getId();
+
                 }
             } else {
                 globalExecutor.execute(() -> girlService.parseAlbum(girl.getId()));

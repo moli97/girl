@@ -25,7 +25,7 @@ mybatis-plus:
     map-underscore-to-camel-case: false
 
 girl:
-  userAgent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36
-  cookie: gcha_sf=1651388170; __51vcke__JNmlfXHHIrHMZgLq=187ff5cc-d4f2-5355-8232-185cf63987fd; __51vuft__JNmlfXHHIrHMZgLq=1651388172769; __51uvsct__JNmlfXHHIrHMZgLq=3; jpx=83; __vtins__JNmlfXHHIrHMZgLq=%7B%22sid%22%3A%20%22c6fdb46f-7aff-55f4-80d1-a08cef59b7a6%22%2C%20%22vd%22%3A%2022%2C%20%22stt%22%3A%201585163%2C%20%22dr%22%3A%2059981%2C%20%22expires%22%3A%201651402913504%2C%20%22ct%22%3A%201651401113504%7D
+  userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+  cookie: __vtins__JNmoBsk0I91IZLwU=%7B%22sid%22%3A%20%22d19a63c7-bdfd-5b44-97da-b11d53715fa1%22%2C%20%22vd%22%3A%201%2C%20%22stt%22%3A%200%2C%20%22dr%22%3A%200%2C%20%22expires%22%3A%201676953382790%2C%20%22ct%22%3A%201676951582790%7D; __51uvsct__JNmoBsk0I91IZLwU=1; __51vcke__JNmoBsk0I91IZLwU=89fa4fd1-e51e-5988-9c58-7edcc8d0d595; __51vuft__JNmoBsk0I91IZLwU=1676951582795; gcha_sf=1676951587; __vtins__JNmlfXHHIrHMZgLq=%7B%22sid%22%3A%20%229e0073cf-1488-5d92-b1ed-8f9f92be0b88%22%2C%20%22vd%22%3A%201%2C%20%22stt%22%3A%200%2C%20%22dr%22%3A%200%2C%20%22expires%22%3A%201676953397973%2C%20%22ct%22%3A%201676951597973%7D; __51uvsct__JNmlfXHHIrHMZgLq=1; __51vcke__JNmlfXHHIrHMZgLq=e8d9ecdd-6ce3-5d0a-85bb-7fc6b8e4a1b3; __51vuft__JNmlfXHHIrHMZgLq=1676951597977; jpx=7
   #existStillSave: false
   proxy: true
