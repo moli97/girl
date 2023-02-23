@@ -1,5 +1,6 @@
 package top.imoli.girl.asiantolick;
 
+import com.alibaba.fastjson.JSON;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -41,7 +42,15 @@ public class AsiantolickServiceImpl {
                 .size(Integer.parseInt(numberPhotos));
         try {
             Document document = Jsoup.connect(href).proxy("127.0.0.1", 7890).get();
-            
+            Elements elements = document.select("#metadata_qrcode > div > span");
+            String creationDate = elements.get(0).text();
+            String photosSize = elements.get(1).text();
+            String albumSize = elements.get(2).text();
+            String download = elements.get(3).selectFirst("a").attr("abs:href");
+            builder.downHref(download).creationDate(creationDate).photosSize(photosSize).albumSize(albumSize);
+            Asiantolick asiantolick = builder.build();
+            System.out.println(JSON.toJSONString(asiantolick));
+
         } catch (IOException e) {
             e.printStackTrace();
         }

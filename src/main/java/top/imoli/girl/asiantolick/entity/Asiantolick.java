@@ -13,7 +13,11 @@ public class Asiantolick {
     private String alt;
     private int size;
     private String downHref;
+    private String creationDate;
+    private String photosSize;
+    private String albumSize;
     private int status;
+
 
     public Asiantolick() {
     }
@@ -66,6 +70,29 @@ public class Asiantolick {
         this.status = status;
     }
 
+    public String getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public String getPhotosSize() {
+        return photosSize;
+    }
+
+    public void setPhotosSize(String photosSize) {
+        this.photosSize = photosSize;
+    }
+
+    public String getAlbumSize() {
+        return albumSize;
+    }
+
+    public void setAlbumSize(String albumSize) {
+        this.albumSize = albumSize;
+    }
 
     public static final class Builder {
         private int postId;
@@ -73,6 +100,9 @@ public class Asiantolick {
         private String alt;
         private int size;
         private String downHref;
+        private String creationDate;
+        private String photosSize;
+        private String albumSize;
         private int status;
 
         private Builder() {
@@ -107,6 +137,21 @@ public class Asiantolick {
             return this;
         }
 
+        public Builder creationDate(String creationDate) {
+            this.creationDate = creationDate;
+            return this;
+        }
+
+        public Builder photosSize(String photosSize) {
+            this.photosSize = photosSize;
+            return this;
+        }
+
+        public Builder albumSize(String albumSize) {
+            this.albumSize = albumSize;
+            return this;
+        }
+
         public Builder status(int status) {
             this.status = status;
             return this;
@@ -119,6 +164,9 @@ public class Asiantolick {
             asiantolick.setAlt(alt);
             asiantolick.setSize(size);
             asiantolick.setDownHref(downHref);
+            asiantolick.setCreationDate(creationDate);
+            asiantolick.setPhotosSize(photosSize);
+            asiantolick.setAlbumSize(albumSize);
             asiantolick.setStatus(status);
             return asiantolick;
         }
