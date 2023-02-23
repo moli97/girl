@@ -13,6 +13,7 @@ import top.imoli.girl.asiantolick.entity.Asiantolick;
 import top.imoli.girl.mapper.AsiantolickMapper;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,6 +30,14 @@ public class AsiantolickServiceImpl extends ServiceImpl<AsiantolickMapper, Asian
 //        for (int i = 0; i < 20; i++) {
 //            parseWithIndex(i);
 //        }
+//        for (Asiantolick asiantolick : list()) {
+//            if (asiantolick.getResourcesUrl() != null) {
+//                String resourcesUrl = asiantolick.getResourcesUrl();
+//                int indexOf = resourcesUrl.lastIndexOf("http");
+//                asiantolick.setResourcesUrl(resourcesUrl.substring(indexOf));
+//                saveOrUpdate(asiantolick);
+//            }
+//        }
         for (Asiantolick asiantolick : list()) {
             try {
                 if (asiantolick.getResourcesUrl() == null || asiantolick.getResourcesUrl().isEmpty()) {
@@ -39,7 +48,7 @@ public class AsiantolickServiceImpl extends ServiceImpl<AsiantolickMapper, Asian
                     asiantolick.setResourcesUrl(resources);
                     saveOrUpdate(asiantolick);
                     System.out.println(asiantolick.getId() + ": " + asiantolick.getResourcesUrl());
-                    Thread.sleep(1000);
+                    Thread.sleep(300);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -116,7 +125,7 @@ public class AsiantolickServiceImpl extends ServiceImpl<AsiantolickMapper, Asian
         String postId = element.attr("post_id");
         String postName = element.attr("post_name");
         String dir = element.attr("dir");
-        return String.format("https://asiantolick.com/ajax/download_post.php?ver=3&dir=/%s&post_id=%s&post_name=%s", dir, postId, postName);
+        return String.format("https://asiantolick.com/ajax/download_post.php?ver=3&dir=/%s&post_id=%s&post_name=%s", dir, postId, URLEncoder.encode(postName, "UTF-8"));
     }
 
     public static String getResources(String url) throws IOException {
