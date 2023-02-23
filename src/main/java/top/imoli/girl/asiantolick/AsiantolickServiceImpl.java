@@ -30,14 +30,19 @@ public class AsiantolickServiceImpl extends ServiceImpl<AsiantolickMapper, Asian
 //            parseWithIndex(i);
 //        }
         for (Asiantolick asiantolick : list()) {
-            if (asiantolick.getResourcesUrl() == null || asiantolick.getResourcesUrl().isEmpty()) {
-                String downHref = asiantolick.getDownHref();
-                String downloadUrl = getDownloadUrl(downHref);
-                String resources = getResources(downloadUrl);
-                asiantolick.setDownUrl(downloadUrl);
-                asiantolick.setResourcesUrl(resources);
-                save(asiantolick);
-                Thread.sleep(1000);
+            try {
+                if (asiantolick.getResourcesUrl() == null || asiantolick.getResourcesUrl().isEmpty()) {
+                    String downHref = asiantolick.getDownHref();
+                    String downloadUrl = getDownloadUrl(downHref);
+                    String resources = getResources(downloadUrl);
+                    asiantolick.setDownUrl(downloadUrl);
+                    asiantolick.setResourcesUrl(resources);
+                    saveOrUpdate(asiantolick);
+                    System.out.println(asiantolick.getId() + ": " + asiantolick.getResourcesUrl());
+                    Thread.sleep(1000);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
@@ -116,6 +121,8 @@ public class AsiantolickServiceImpl extends ServiceImpl<AsiantolickMapper, Asian
 
     public static String getResources(String url) throws IOException {
         Document document = Jsoup.connect(url).proxy("127.0.0.1", 7890).get();
-        return document.text();
+        String text = document.text();
+        int indexOf = text.lastIndexOf("http");
+        return text.substring(indexOf);
     }
 }

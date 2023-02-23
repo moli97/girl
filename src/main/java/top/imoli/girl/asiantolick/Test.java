@@ -9,10 +9,10 @@ import java.io.IOException;
 public class Test {
 
     public static void main(String[] args) throws IOException {
-        String url = "https://asiantolick.com/download-3684/download";
-        String downloadUrl = AsiantolickServiceImpl.getDownloadUrl(url);
-        String resources = AsiantolickServiceImpl.getResources(downloadUrl);
-        System.out.println(resources);
+        String s = "link=https://cdn2.asiantolick.com/temp_dl/TricolourLovestoryCosplay(UNCENSORED)_392_AsianToLick_com.ziphttps://cdn2.asiantolick.com/temp_dl/TricolourLovestoryCosplay(UNCENSORED)_392_AsianToLick_com.zip";
+        int indexOf = s.lastIndexOf("http");
+        String substring = s.substring(indexOf);
+        System.out.println(substring);
 
     }
 }
