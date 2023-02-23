@@ -8,11 +8,13 @@ import com.baomidou.mybatisplus.annotation.TableName;
  */
 @TableName("t_u_asiantolick")
 public class Asiantolick {
-    private int postId;
+    private int id;
     private String href;
     private String alt;
     private int size;
     private String downHref;
+    private String description;
+    private String galleryPictures;
     private String creationDate;
     private String photosSize;
     private String albumSize;
@@ -22,12 +24,12 @@ public class Asiantolick {
     public Asiantolick() {
     }
 
-    public int getPostId() {
-        return postId;
+    public int getId() {
+        return id;
     }
 
-    public void setPostId(int postId) {
-        this.postId = postId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getHref() {
@@ -94,6 +96,22 @@ public class Asiantolick {
         this.albumSize = albumSize;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getGalleryPictures() {
+        return galleryPictures;
+    }
+
+    public void setGalleryPictures(String galleryPictures) {
+        this.galleryPictures = galleryPictures;
+    }
+
     public static final class Builder {
         private int postId;
         private String href;
@@ -104,6 +122,8 @@ public class Asiantolick {
         private String photosSize;
         private String albumSize;
         private int status;
+        private String description;
+        private String galleryPictures;
 
         private Builder() {
         }
@@ -157,9 +177,19 @@ public class Asiantolick {
             return this;
         }
 
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder galleryPictures(String galleryPictures) {
+            this.galleryPictures = galleryPictures;
+            return this;
+        }
+
         public Asiantolick build() {
             Asiantolick asiantolick = new Asiantolick();
-            asiantolick.setPostId(postId);
+            asiantolick.setId(postId);
             asiantolick.setHref(href);
             asiantolick.setAlt(alt);
             asiantolick.setSize(size);
