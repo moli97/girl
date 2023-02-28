@@ -9,9 +9,8 @@ import java.io.IOException;
 public class Test {
 
     public static void main(String[] args) throws IOException {
-        String s = "link=https://cdn2.asiantolick.com/temp_dl/TricolourLovestoryCosplay(UNCENSORED)_392_AsianToLick_com.ziphttps://cdn2.asiantolick.com/temp_dl/TricolourLovestoryCosplay(UNCENSORED)_392_AsianToLick_com.zip";
-        int indexOf = s.lastIndexOf("http");
-        String substring = s.substring(indexOf);
+        String u = "https://cdn2.asiantolick.com/temp_dl/Xidaidai0_307_AsianToLick_com.zip";
+        String substring = u.substring(u.lastIndexOf("/") + 1);
         System.out.println(substring);
 
     }

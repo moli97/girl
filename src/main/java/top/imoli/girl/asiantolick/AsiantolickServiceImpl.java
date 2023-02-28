@@ -48,7 +48,6 @@ public class AsiantolickServiceImpl extends ServiceImpl<AsiantolickMapper, Asian
                     asiantolick.setResourcesUrl(resources);
                     saveOrUpdate(asiantolick);
                     System.out.println(asiantolick.getId() + ": " + asiantolick.getResourcesUrl());
-                    Thread.sleep(300);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
